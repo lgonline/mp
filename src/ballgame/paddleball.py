@@ -2,7 +2,8 @@
 __author__ = 'hcm'
 
 from tkinter import *
-from src.game_for_ball.Ball import Ball
+from src.ballgame.Ball import Ball
+from src.ballgame.Paddle import Paddle
 import time,random
 
 if __name__ == "__main__":
@@ -11,16 +12,18 @@ if __name__ == "__main__":
     tk.resizable(0,0) #the windows size cannot chage in width and height
     tk.wm_attributes("-topmost",1)
 
-    cavnes = Canvas(tk,width=500,height=500,bd=0)
+    cavnas = Canvas(tk,width=500,height=500,bd=0)
+    cavnas.pack()
+    tk.update()
 
-    ball = Ball(cavnes,'red')
-
-    cavnes.pack()
+    ball = Ball(cavnas,'blue')
+    paddle = Paddle(cavnas,"red")
 
     while 1:
         ball.draw()
+        paddle.draw()
         tk.update_idletasks()
         tk.update()
-        time.sleep(0.05)
+        time.sleep(0.02)
 
-    cavnes.mainloop()
+    cavnas.mainloop()
