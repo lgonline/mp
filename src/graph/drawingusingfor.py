@@ -18,10 +18,10 @@ if __name__ == "__main__":
         t.left(225)
 
     #draw anothers start
-    t.left(60)
-    t.forward(50)
-    for x in range(1,38):
-        t.forward(50)
-        t.left(175)
+    t.left(160)
+    t.forward(150)
+    for x in range(1,60):
+        t.forward(150)
+        t.left(275)
 
     #draw anothers start
