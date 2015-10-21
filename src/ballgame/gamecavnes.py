@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     cavnes = Canvas(tk,width=500,height=500,bd=0)
     cavnes.pack()
-    #tk.update()
+    tk.update()
 
     #ball = Ball(cavnes,'blue')
 
@@ -22,5 +22,6 @@ if __name__ == "__main__":
     #    tk.update_idletasks()
     #    tk.update()
     #    time.sleep(0.02)
+    print("ok")
 
     cavnes.mainloop()
