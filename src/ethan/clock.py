@@ -3,7 +3,7 @@ __author__ = 'Administrator'
 from tkinter import *
 from datetime import datetime
 
-root = tk()
+root = Tk()
 
 def cacl(input_str):
     if "x" in input_str:
@@ -48,9 +48,10 @@ class App:
         v.set("")
         self.v = v
         e1.pack()
-def say_hi(self):
-    print("hi there, everyone!",self.e.get())
-    input_str = self.e.get()
-    self.v.set(cacl(input_str))
-    app = App(root)
-    root.mainloop()
+
+    def say_hi(self):
+        print("hi there, everyone!",self.e.get())
+        input_str = self.e.get()
+        self.v.set(cacl(input_str))
+        app = App(root)
+        root.mainloop()

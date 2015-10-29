@@ -62,10 +62,12 @@ def ping(ip):
     print("长度:"+str(len(ret)))
     print(bak)
     print(bak.find(pp))
-    '''
+        '''
     if(bak.find(pp)!=-1):
         return ip
+
 if __name__=='__main__':
     #pbar = ProgressBar().start()
     main()
-    ping("10.100.95.149")
+    input = input('please input the ip address you wanted.\n')
+    ping(input)
