@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from obj import Shop
+from fundamental.obj import Shop
 
 shops = Shop.BoyCloth("liugang","gaungzhou",1500,"china")
 shops.showInfo()

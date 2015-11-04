@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from fun import fun_year
+from fundamental.fun import fun_year
 
 flag = True
 while flag:

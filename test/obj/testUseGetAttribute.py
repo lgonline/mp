@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from obj.useGetAttribute import MyAttribute
+from fundamental.obj import MyAttribute
 
 ma = MyAttribute()
 ma.member

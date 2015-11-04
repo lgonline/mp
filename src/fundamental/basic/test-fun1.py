@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from fun import fun1
+from fundamental.fun import fun1
 
 print("please input your name: ")
 username = input("")

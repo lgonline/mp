@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from basic import AgeCalculator
+from fundamental.basic import AgeCalculator
 
 print("hi, xiaoming, please input your age: ")
 xiaoming=float(input())

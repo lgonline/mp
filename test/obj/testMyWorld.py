@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from obj import MyWorld
+from fundamental.obj import MyWorld
 
 
 if __name__ == "__main__":

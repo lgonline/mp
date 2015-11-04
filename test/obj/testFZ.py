@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from obj.fengzhuang import MyFZ
+from fundamental.obj import MyFZ
 
 myfz1 = MyFZ()
 myfz1.setName("zhangsan")

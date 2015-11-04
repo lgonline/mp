@@ -1,57 +1,58 @@
 __author__ = 'Administrator'
 
-from tkinter import *
-from datetime import datetime
 
-root = Tk()
+# alarm_clock.py
 
-def cacl(input_str):
-    if "x" in input_str:
-        ret = input_str.split("x")
-    return int(ret[0]) * int(ret[1])
+# Description: A simple Python program to make the computer act
+# like an alarm clock. Start it running from the command line
+# with a command line argument specifying the duration in minutes
+# after which to sound the alarm. It will sleep for that long,
+# and then beep a few times. Use a duration of 0 to test the
+# alarm immediiately, e.g. for checking that the volume is okay.
 
-def callback(n):
-    print(n)
+# Author: Vasudev Ram - http://www.dancingbison.com
 
-def callback1(n):
-    print(n)
+import sys
+from time import sleep
 
-class App:
-    def __init__(self, master):
-        frame1 = Frame(master)
-        frame1.pack()
-        frame = Frame(master)
-        frame.pack()
-        Button(frame, text="1",command=lambda: callback(1) ).grid(row=0,column=0)
-        Button(frame, text="2",command=lambda: callback(2) ).grid(row=0,column=1)
-        Button(frame, text="3",command=lambda: callback(3) ).grid(row=0,column=2)
-        Button(frame, text="4",command=lambda: callback(4) ).grid(row=1,column=0)
-        Button(frame, text="5",command=lambda: callback(5) ).grid(row=1,column=1)
-        Button(frame, text="6",command=lambda: callback(6) ).grid(row=1,column=2)
-        Button(frame, text="7",command=lambda: callback(7) ).grid(row=2,column=0)
-        Button(frame, text="8",command=lambda: callback(8) ).grid(row=2,column=1)
-        Button(frame, text="9",command=lambda: callback(9) ).grid(row=2,column=2)
-        Button(frame, text="0",command=lambda: callback(0) ).grid(row=3,column=0)
-        Button(frame, text="+",command=lambda: callback1("+") ).grid(row=3,column=1)
-        Button(frame, text="-",command=lambda: callback1("-") ).grid(row=3,column=2)
-        Button(frame, text="*",command=lambda: callback1("*") ).grid(row=4,column=1)
-        Button(frame, text="/",command=lambda: callback1("/") ).grid(row=4,column=2)
-        Button(frame, text="=", command=self.say_hi).grid(row=4,column=0)
-        w = Label(frame1,text="输入结果")
-        w.pack()
-        self.e = Entry(frame1)
-        self.e.pack(padx=5)
-        w1 = Label(frame1,text="计算结果")
-        w1.pack()
-        v = StringVar()
-        e1 = Entry(frame1, textvariable=v)
-        v.set("")
-        self.v = v
-        e1.pack()
+sa = sys.argv
+lsa = len(sys.argv)
+if lsa != 2:
+    print("Usage: [ python ] alarm_clock.py duration_in_minutes")
+    print("Example: [ python ] alarm_clock.py 10")
+    print("Use a value of 0 minutes for testing the alarm immediately.")
+    print("Beeps a few times after the duration is over.")
+    print("Press Ctrl-C to terminate the alarm clock early.")
+    sys.exit(1)
 
-    def say_hi(self):
-        print("hi there, everyone!",self.e.get())
-        input_str = self.e.get()
-        self.v.set(cacl(input_str))
-        app = App(root)
-        root.mainloop()
+try:
+    minutes = int(sa[1])
+except ValueError:
+    print("Invalid numeric value (%s) for minutes" % sa[1])
+    print("Should be an integer >= 0")
+    sys.exit(1)
+
+if minutes < 0:
+    print("Invalid value for minutes, should be >= 0")
+    sys.exit(1)
+
+seconds = minutes * 60
+
+if minutes == 1:
+    unit_word = " minute"
+else:
+    unit_word = " minutes"
+
+try:
+    if minutes > 0:
+        print("Sleeping for " + str(minutes) + unit_word)
+        sleep(seconds)
+    print("Wake up")
+    for i in range(5):
+        print(chr(7)),
+        sleep(1)
+except KeyboardInterrupt:
+    print("Interrupted by user")
+    sys.exit(1)
+
+# EOF

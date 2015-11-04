@@ -1,5 +1,5 @@
 __author__ = 'Administrator'
 
-from basic import updatePassword
+from fundamental.basic import updatePassword
 
 updatePassword.updatePassword()

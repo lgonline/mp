@@ -2,7 +2,7 @@ __author__ = 'Administrator'
 
 import unittest
 
-from db.useUnitTesting import Dict
+from fundamental.db import Dict
 
 
 class TestDict(unittest.TestCase):

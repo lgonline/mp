@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from obj.MathodForClass import StaticMethodForClass
+from fundamental.obj import StaticMethodForClass
 
 if __name__ == "__main__":
     mysm = StaticMethodForClass()
