@@ -1,4 +1,6 @@
-__author__ = 'Administrator'
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+__author__ = 'liugang5'
 
 class Fruit:
     def __init__(self,*args):
@@ -18,7 +20,7 @@ class Fruit:
     def setColor(color):
        def method(self):
            self.color = color
-        return method
+           return method
 
     def canEat(self):
         self.eat = True
