@@ -1,27 +1,22 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
-__author__ = 'Ethan'
+__author__ = 'liugang5'
 
 from flask import Flask,render_template
 from flask.ext.bootstrap import Bootstrap
 
-#use flask-moment to handle date and time in local
-from flask.ext.moment import Moment
-
-from datetime import datetime
-
 app = Flask(__name__)
-#bootstrap = Bootstrap(app)
-moment = Moment(app)
+bootstrap = Bootstrap(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html', current_time=datetime.utcnow())
+    return render_template('first_index.html')
 
 @app.route('/user/<name>')
 def user(name):
-    return render_template('old_user.html',name=name)
+    return render_template('user_bootstrap.html',name=name)
 
+#self define the bad web page
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'),404
@@ -32,3 +27,4 @@ def internal_server_error(e):
 
 if __name__ == "__main__":
     app.run(debug=True)
+    pass
