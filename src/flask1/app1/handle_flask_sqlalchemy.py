@@ -10,8 +10,13 @@ from wtforms.validators import Required
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.moment import Moment
 from wtforms import StringField,SubmitField
+
+#execute database operation
 from flask.ext.script import Shell
 from flask.ext.script import Manager
+
+#create migrate lab
+from flask.ext.migrate import Migrate,MigrateCommand
 
 #初始化及配置一个简单的SQLite 数据库
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -19,7 +24,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+migrate = Migrate(app)
+
 manager = Manager(app)
+manager.add_command('db',MigrateCommand)
 
 app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
@@ -50,7 +58,9 @@ class Role(db.Model):
     db.relationship() 的第一个参数表明这个关系的另一端是哪个模型。如果模型类尚未定义，可使用字符串形式指定。
     db.relationship() 中的backref 参数向User 模型中添加一个role 属性，从而定义反向关系。这一属性可替代role_id 访问Role模型，此时获取的是模型对象，而不是外键的值。
     '''
-    users = db.relationship('User',backref='role')
+    #users = db.relationship('User',backref='role')
+    users = db.relationship('User', backref='role', lazy='dynamic')
+
 
 class User(db.Model):
     #__tablename__定义在数据库中使用的表名
