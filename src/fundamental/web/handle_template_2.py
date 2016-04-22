@@ -3,16 +3,15 @@
 __author__ = 'Ethan'
 
 from flask import Flask,render_template
-from flask.ext.bootstrap import Bootstrap
+# from flask.ext.bootstrap import Bootstrap
 
-#use flask-moment to handle date and time in local
-from flask.ext.moment import Moment
+# from flask.ext.moment import Moment
 
 from datetime import datetime
 
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
-moment = Moment(app)
+# bootstrap = Bootstrap(app)
+#moment = Moment(app)
 
 @app.route('/')
 def index():
