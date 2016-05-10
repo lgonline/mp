@@ -1,0 +1,24 @@
+<!--
+这个模板包含HTML骨架、头部和一个登录链接（如果用户已登录则变为一个注销链接 ）。如果有闪现信息，那么还会显示闪现信息。
+
+
+session 字典在模板中也可以使用。你可以使用它来检验用户是否已经 登录。注意，在 Jinja 中可以访问对象或字典的不存在的属性和成员。如例子中的 'logged_in' 键不存在时代码仍然能正常运行：
+-->
+<!doctype html>
+<title>Flaskr</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>Flaskr</h1>
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+    <!--{% block body %} 块会被子模板中 同名（ body ）的块替换。-->
+  {% block body %}{% endblock %}
+</div>

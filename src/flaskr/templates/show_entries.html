@@ -1,0 +1,26 @@
+<!--
+这个模板扩展了上述的 layout.html 模板，用于显示信息。
+注意，模板还告诉
+-->
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+      <dl>
+        <dt>Title:
+        <dd><input type=text size=30 name=title>
+        <dt>Text:
+        <dd><textarea name=text rows=5 cols=40></textarea>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  {% endif %}
+  <ul class=entries>
+  <!--for遍历了通过render_template()函数传递的所有信息。 -->
+  {% for entry in entries %}
+    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

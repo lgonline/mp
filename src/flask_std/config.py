@@ -45,8 +45,3 @@ config = {
     'production': ProductionConfig,
     'default': DevelopmentConfig
 }
-
-'''
-if __name__ == "__main__":
-    pass
-'''

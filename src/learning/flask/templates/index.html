@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!-- 第一部分是页面头部，显示欢迎消息 -->
+{% block title %}Flasky{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <!-- 这里用到了一个模板条件语句。Jinja2 中的条件语句格式为{% if condition %}...{% else %}...{% endif %}。
+如果条件的计算结果为True，那么渲染if 和else 指令之间的值。如果条件的计算结果为False，则渲染else 和endif 指令之间的值。-->
+        <p>The local date and time is {{ moment(current_time).format('LLL') }}.</p><!-- format('LLL') 根据客户端电脑中的时区和区域设置渲染日期和时间。 -->
+        <p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+        <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
+        {% if not known %}
+        <p> Pleased to meet your!</p>
+        {% else %}
+        <p>Happy to see you again!</p>
+        {% endif %}
+    </div>
+    {{ wtf.quick_form(form) }}
+{% endblock %}
