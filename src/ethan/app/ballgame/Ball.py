@@ -1,9 +1,7 @@
 #/usr/bin/python
 __author__ = 'hcm'
 
-from tkinter import *
-from src.ballgame.Paddle import Paddle
-import random,time
+import random
 
 
 class Ball:

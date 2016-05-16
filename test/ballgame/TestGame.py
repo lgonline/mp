@@ -2,10 +2,12 @@
 #-*- coding: utf-8 -*-
 __author__ = 'hcm'
 
+import time
 from tkinter import *
+
 from src.ballgame.Ball import Ball
-from src.ballgame.Paddle import Paddle
-import time,random
+
+from ethan.app.ballgame.Paddle import Paddle
 
 if __name__ == "__main__":
     tk = Tk()

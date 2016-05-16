@@ -2,8 +2,6 @@
 __author__ = 'hcm'
 
 from tkinter import *
-from src.ballgame.Ball import Ball
-import time
 
 if __name__ == "__main__":
     tk = Tk()
