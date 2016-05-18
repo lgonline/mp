@@ -17,6 +17,6 @@ if __name__=='__main__':
         p.apply_async(long_time_task, args=(i,))
     print('Waiting for all subprocesses done...')
     p.close()
-    #when the object of pool call the method of join(), then it will waiting until all of the sub-processing is end
+    #when the object of pool call the method of join(), then it will waiting until all of the sub-threads is end
     p.join()
     print('All subprocesses done.')
