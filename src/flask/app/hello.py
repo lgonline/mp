@@ -10,7 +10,7 @@ from flask import Flask,render_template,url_for,request
 from flask.ext.script import Manager
 
 app = Flask(__name__)
-#manager = Manager(app)
+#manager = Manager(MyApp)
 
 @app.route('/')
 def index():

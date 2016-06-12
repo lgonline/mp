@@ -7,7 +7,7 @@ from tkinter import *
 
 from src.ballgame.Ball import Ball
 
-from ethan.app.ballgame.Paddle import Paddle
+from ethan.MyApp.ballgame.Paddle import Paddle
 
 if __name__ == "__main__":
     tk = Tk()

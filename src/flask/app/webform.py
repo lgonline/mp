@@ -19,7 +19,7 @@ class NameForm(Form):
     name = StringField('What is your name?',validators=[Required()])
     submit = SubmitField('Submit')
 
-#app.route 修饰器中添加的 methods 参数告诉 Flask 在 URL 映射中把这个视图函数注册为GET 和 POST 请求的处理程序,默认为GET
+#MyApp.route 修饰器中添加的 methods 参数告诉 Flask 在 URL 映射中把这个视图函数注册为GET 和 POST 请求的处理程序,默认为GET
 #用户第一次访问程序时， 服务器会收到一个没有表单数据的 GET 请求，所以 validate_on_submit() 将返回 False。
 #if 语句的内容将被跳过，通过渲染模板处理请求，并传入表单对象和值为 None 的 name 变量作为参数。用户会看到浏览器中显示了一个表单。
 #用户提交表单后， 服务器收到一个包含数据的 POST 请求。 validate_on_submit() 会调用name 字段上附属的 Required() 验证函数。如果名字不为空，就能通过验证， validate_on_submit() 返回 True。现在，用户输入的名字可通过字段的 data 属性获取。在 if 语句中，把名字赋值给局部变量 name，然后再把 data 属性设为空字符串，从而清空表单字段。最后一行调用 render_template() 函数渲染模板，但这一次参数 name 的值为表单中输入的名字，因此会显示一个针对该用户的欢迎消息。
