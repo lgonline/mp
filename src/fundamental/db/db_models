@@ -1,0 +1,79 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+
+__author__ = '330mlcc'
+
+
+import os
+from mydb import my_models
+from mydb.my_models import myuser
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Table,Column,Integer,String
+
+Base = declarative_base()
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+class myuser(Base):
+    __tablename__ = 'myuser'  #tablename
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    fullname = Column(String)
+    password = Column(String)
+
+    def __init__(self, name, fullname, password):
+        self.name = name
+        self.fullname = fullname
+        self.password = password
+
+    def __repr__(self):
+        return "<myuser('%s','%s','%s')>" % (self.name, self.fullname, self.password)
+
+def create_table():
+    users_table = myuser.__table__  #get the table
+    metadata = Base.metadata  #get MetaDATA
+
+
+    engine = create_engine('sqlite:///'+os.path.join(basedir,'test.db'),echo=True)
+    Session = sessionmaker(bind=engine)
+    metadata.create_all(engine)
+
+    #another method to create a session
+    #Session=sessionmaker()
+    #Session.configure(bind=engine)
+
+
+def add_data_to_db():
+    use_table = myuser
+    #add a object via the method add from session
+    engine = create_engine('sqlite:///' + os.path.join(basedir, 'test.db'), echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    user1 = use_table('111', '111', '111')
+    session.add(user1)
+    session.add_all([
+        use_table('222', '222', '222'),
+        use_table('333', '333', '333'),
+        use_table('444', '444', '444')])
+    session.dirty
+    session.new
+
+    session.commit()
+
+def search_data_db():
+    #use_table = ccc.__tablename__
+    engine = create_engine('sqlite:///' + os.path.join(basedir, 'test.db'), echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    lists=[]
+    lists = session.query(my_models.myuser).all()
+
+    for list in lists:
+        print list
+
+if __name__ == '__main__':
+    pass
