@@ -1,0 +1,13 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+
+__author__ = 'lgonline'
+
+from mydb import my_models_handle
+from mydb import *
+
+if __name__ == '__main__':
+    #my_models_handle.create_table()
+    #my_models_handle.add_data_to_db()
+    my_models_handle.search_data_db()
+    pass
