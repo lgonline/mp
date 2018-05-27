@@ -42,7 +42,7 @@ class recommended_fun():
         return recommended_fun(num,den)
 
     def myprint(self):
-        print str(self.num)+"/"+str(self.den)
+        print(str(self.num)+"/"+str(self.den))
 
 
 if __name__ == '__main__':
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     # print fun(3,5,7,15)
     # print '-------excute adv_fun--------'
     # print adv_dev(r1,r2)
-    print '-------excute recommended_fun--------'
+    print('-------excute recommended_fun--------')
     r1 = recommended_fun(3,5)
     r2 = r1.plus(recommended_fun(7,15))
     r2.myprint()
