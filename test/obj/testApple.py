@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from fundamental.obj import Fruit
+from obj import Fruit
 
 if __name__ == "main":
     apple = Fruit(hasNotHarvest,setColor('green'))

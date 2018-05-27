@@ -1,14 +1,15 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-__author__ = 'liugang9'
+__author__ = '330mlcc'
 
 import json
 import requests
-from urlparse import urlparse
+# from urlparse import urlparse
+from urllib.parse import urlparse
 
 def _query_es(url, json_param, proxy=False):
-    proxies = {'http':'http://172.16.169.99:80'} if proxy else {}
+    proxies = {'http':'http://xxx.xxx.xxx.xxx:80'} if proxy else {}
     flag = 'fields' if json_param.get('fields') else '_source'
     result = {'total':0,'data':[]}
     size = json_param['size']
@@ -23,7 +24,7 @@ def _query_es(url, json_param, proxy=False):
 
         r = requests.post(url_start, json.dumps(json_param), proxies = proxies)
         json_obj = json.loads(r.content)
-        print json_obj
+        print(json_obj)
 
         _scroll_id = json_obj['_scroll_id']
         """
@@ -48,7 +49,7 @@ def _query_es(url, json_param, proxy=False):
             try:
                 r = requests.post(url, _scroll_id, proxies = proxies)
                 json_obj = json.loads(r.content)
-                print json_obj
+                print(json_obj)
                 """
                 hits = json_obj['hits']['hits']
                 if len(hits) > 0:
@@ -64,8 +65,8 @@ def _query_es(url, json_param, proxy=False):
                 else:
                     break
                 """
-            except Exception,e:
-                print e
+            except Exception as e:
+                print(e)
 
     else:
         try:
@@ -79,8 +80,8 @@ def _query_es(url, json_param, proxy=False):
                     result['data'].append(tmp)
                 except:
                     continue
-        except Exception,e:
-            print e
+        except Exception as e:
+            print(e)
 
     return result
 
@@ -89,11 +90,11 @@ def format_data(data):
     return data
 
 if __name__ == '__main__':
-    url = 'http://172.20.73.73:9216/databaseprocessinfo/_search'
+    url = 'http://xxx.xxx.xxx.xxx:9216/databaseprocessinfo/_search'
     json_param = {"query" : {"filtered" : {"query" : {"bool" : {"must" : [{"range" : {"exec_time" : {"gte" : "2016-12-12 00:00:00","lt" : "2016-12-19 00:00:00"}}} ],"must_not" : [{"match_phrase" : {"INFO" : "SELECT * FROM PROCESSLIST"}}]}}}},"from" : 0,"size" : 1000}
     result = _query_es(url, json_param, True)
 	#print result['data']
-    print result['data']
+    print(result['data'])
     #print result['total']
     #with open('sql_result', 'w') as f:
     #    f.write(json.dumps(result))
