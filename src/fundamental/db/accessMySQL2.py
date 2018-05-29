@@ -2,7 +2,7 @@ __author__ = 'Administrator'
 
 import pymysql
 
-conn = pymysql.Connection(host='127.0.0.1',user='root',passwd='lgonline')
+conn = pymysql.Connection(host='127.0.0.1',user='root',passwd='123456')
 cur = conn.cursor()
 
 try:

@@ -1,8 +1,8 @@
 __author__ = 'Administrator'
 
-from fundamental.obj import Shop
+from obj import Shop
 
-shops = Shop.BoyCloth("liugang","gaungzhou",1500,"china")
+shops = Shop.BoyCloth("liugang", "gaungzhou", 1500, "china")
 shops.showInfo()
 
 if issubclass(Shop.BoyCloth, Shop.BoyClothStore) == True:

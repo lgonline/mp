@@ -5,8 +5,8 @@ __author__ = 'lgonline'
 
 
 import os
-from mydb import my_models
-from mydb.my_models import myuser
+# from mydb import my_models
+# from mydb.my_models import myuser
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -70,10 +70,10 @@ def search_data_db():
     session = Session()
 
     lists=[]
-    lists = session.query(my_models.myuser).all()
+    # lists = session.query(my_models.myuser).all()
 
     for list in lists:
-        print list
+        print(list)
 
 if __name__ == '__main__':
     pass

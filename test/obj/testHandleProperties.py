@@ -1,6 +1,6 @@
 __author__ = 'Administrator'
 
-from fundamental.obj import Japanese
+from obj import Japanese
 
 if __name__ == "__main__":
     tzry = Japanese()

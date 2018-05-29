@@ -1,7 +1,6 @@
 __author__ = 'Administrator'
 
-from fundamental.obj import MyWorld
-
+from obj import MyWorld
 
 if __name__ == "__main__":
     mystr = input("please input your object (person, pig, rooster) : ")

@@ -4,7 +4,7 @@ import os,sys
 import pymysql
 
 try:
-    conn = pymysql.connect(host='localhost',user='root',passwd='lgonline',db='bm',port=3306,charset='utf8')
+    conn = pymysql.connect(host='localhost',user='root',passwd='123456',db='bm',port=3306,charset='utf8')
     cur=conn.cursor()
     cur.execute('select userid,name,password from userinfo')
     data=cur.fetchall()
