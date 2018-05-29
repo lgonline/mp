@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2018/5/21 12:49
-# @Author  : liugang9
-# @Email   : mlcc330@hotmail.com
+# @Author  : 330mlcc
+# @Email   : lg_online@hotmail.com
 # @File    : example_35_1.py
 # @Software: PyCharm
 # @license: Apache Licence
