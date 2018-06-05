@@ -120,7 +120,7 @@ class SingleLinkedList(object):
             post.next = q
             q.next = p
 
-    def delete(self,index):
+    def delete(self,index,item):
         if self.is_empty() or index < 0 or index > self.getlength():
             print('single linkedlist is empty.')
             return
