@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time    : 2018/6/4 12:09
 # @Author  : liugang9
@@ -6,10 +7,6 @@
 # @Software: PyCharm
 # @license: Apache Licence
 # @contact: 3323202070@qq.com
-
-"""
-
-"""
 
 import urllib
 import re
@@ -25,18 +22,13 @@ def searchFromIP(ip):
         if fip != "":
             rip = re.compile(r"您查询的IP：(\d+.\d+.\d+.\d+).*本站主数据：(\S+  \S+)</p>.*参考数据一：(\S+ \S+)</p>.*网友提交的IP：(\S+ \S+)</p>")
             results = rip.findall(fip)
-            # result = str(result).replace('u\'', '\'')
-            # print(type(result))
         else:
             rip = re.compile(r"您查询的IP：(\d+.\d+.\d+.\d+).*本站主数据：(\S+  \S+)</p>.*")
-            results = rip.findall()
-            # result = str(result).replace('u\'','\'')
-            # print(type(result))
+            results = rip.findall(fip)
     except Exception as e:
         print(e)
 
-    for result in results:
-        print('%s\t %s' % (ip,result))
+    print('%s\t %s' % (ip,results.decode('utf8')))
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
