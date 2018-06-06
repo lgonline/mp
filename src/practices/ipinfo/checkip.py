@@ -18,23 +18,26 @@ def ISIP(s):
 def searchFromIP(ip):
     uip = urllib.urlopen('http://m.ip138.com/ip.asp?ip=%s' % ip)
     fip = uip.read().decode('utf-8')
-    print(fip)
+    # print(fip)
+    #<h1 class="query">您查询的IP：8.8.8.8</h1><p class="result">本站主数据：美国 Google免费DNS</p><p class="result">参考数据一：美国</p><p class="result">网友提交的IP：美国 Google
     try:
         if fip != "":
-            rip = re.compile(r"您查询的IP：(\d+.\d+.\d+.\d+).*本站主数据：(\S+)</p>.*参考数据一：(\S+\s{1,4}\S+)</p>.*网友提交的IP：(\S+ \S+)</p>")
+            rip = re.compile(r"您查询的IP：(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}).*本站主数据：(\S+\s{1,3}\S+)<.*参考数据一：(\S+)<.*网友提交的IP：(\S+\s{1,3}\S+).*")
+            # rip = re.compile(r"您查询的IP：(.*)")
             # rip = re.compile(r"本站主数据：(\S+\s{1,4}\S+)</p>.*参考数据一：(\S+\s{1,4}\S+)</p>.*网友提交的IP：(\S+ \S+)</p>.*")
             results = rip.findall(fip)
+            print(results)
         else:
-            rip = re.compile(r"您查询的IP：(\d+.\d+.\d+.\d+).*本站主数据：(\S+\s{1,4}\S+)</p>.*参考数据一：(\S+\s{1,4}\S+)</p>.*")
+            rip = re.compile(r"您查询的IP：(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}).*本站主数据：(\S+\s{1,4}\S+)</p>.*参考数据一：(\S+\s{1,4}\S+)</p>.*")
             # rip = re.compile(r"本站主数据：(\S+\s{1,4}\S+)</p>.*参考数据一：(\S+\s{1,4}\S+)</p>.*")
             results = rip.findall(fip)
     except Exception as e:
         print(e)
 
-    # print('%s\t %s' % (ip,str(results).decode('utf8')))
-    for result in results:
-        for r in result:
-            print(r.decode('utf8'))
+    print('%s\t %s' % (ip,results))
+    # for result in results:
+    #     for r in result:
+    #         print(r.decode('utf8'))
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -45,5 +48,6 @@ if __name__ == '__main__':
     if ISIP(input):
         ipadress = input
         searchFromIP(ipadress)
+        print('done')
     else:
         print('ip is not found.')
