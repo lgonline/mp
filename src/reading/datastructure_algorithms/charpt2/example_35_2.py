@@ -114,10 +114,10 @@ class recommended_fun():
         return self.__num * another.den() < self.__den * another.num()
 
     def __str__(self):
-        print str(self.__num)+"/"+str(self.__den)
+        print(str(self.__num)+"/"+str(self.__den))
 
     def myprint(self):
-        print self.__num,"/",self.__den
+        print(self.__num,"/",self.__den)
 
 
 if __name__ == '__main__':
@@ -132,5 +132,7 @@ if __name__ == '__main__':
     # r2.myprint()
     x = recommended_fun(3,5)
     x.myprint()
+
     y = x.__add__(recommended_fun(7,15))
+
     y.myprint()
