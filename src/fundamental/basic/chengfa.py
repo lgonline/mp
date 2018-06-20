@@ -1,4 +1,5 @@
 __author__ = 'Administrator'
+
 print("the table of chengfa")
 for i in range(1,10):
     for j in range(1,i+1):

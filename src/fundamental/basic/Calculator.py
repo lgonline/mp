@@ -1,4 +1,5 @@
 __author__ = 'Administrator'
+
 while 1 == 1:
     theOne = int(input("please input that your first numbers :"))
     theSecond = int(input("please input that your second numbers :"))
