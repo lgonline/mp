@@ -13,37 +13,40 @@
 """
 
 from socket import *
-from time import ctime
+import time
 
-def func():
+def main():
     HOST = ''
-    PORT = '8001'
+    PORT = 8001
     BUFSIZE = 1024
     ADDR = (HOST,PORT)
 
     tcpServerSock = socket(AF_INET,SOCK_STREAM)
     tcpServerSock.bind(ADDR)
-    tcpServerSock.listen(5)
+    tcpServerSock.listen(1)
 
     while True:
-        print 'waiting for connection...'
+        print('waiting for connection...')
         tcpCliSock,addr = tcpServerSock.accept()
-        print '...connected from : ',addr
+        print('...connected from : ',addr)
         while True:
-            data = tcpServerSock.recv(BUFSIZE)
+            data = tcpCliSock.recv(BUFSIZE)
+            data = data.decode('utf-8')
             if not data:
                 break
-            tcpCliSock.send('[%s] %s'(ctime(),data))
+            ss = '[%s] %s' % (time.ctime(),data)
+            tcpCliSock.sendall(ss.encode('utf-8'))
+            print(ss)
         tcpCliSock.close()
     tcpServerSock.close()
 
     pass
 
-
-class main():
-    def __init__(self):
-        func()
-        pass
+#
+# class main():
+#     def __init__(self):
+#         func()
+#         pass
 
 
 if __name__ == "__main__":

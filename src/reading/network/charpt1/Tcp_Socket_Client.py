@@ -14,8 +14,8 @@
 
 from socket import *
 
-def func():
-    HOST = '::1'
+def main():
+    HOST = '127.0.0.1'
     PORT = 8001
     BUFSIZE = 1024
     ADDR = (HOST,PORT)
@@ -24,22 +24,20 @@ def func():
     tcp_Clienet_Sock.connect(ADDR)
 
     while True:
-        data = raw_input('>')
+        # data = raw_input('>')
+        data = input('>')
         if not data:
+            # break
+            continue
+            print('input data : [%s]' % data)
+        tcp_Clienet_Sock.sendall(data.encode('utf-8'))
+        rdata = tcp_Clienet_Sock.recv(BUFSIZE)
+        if not rdata:
             break
-        tcp_Clienet_Sock.send(data)
-        data = tcp_Clienet_Sock.recv(BUFSIZE)
-        if not data:
-            break
+        print(rdata.decode('utf-8'))
     tcp_Clienet_Sock.close()
 
     pass
-
-
-class main():
-    def __init__(self):
-        func()
-        pass
 
 
 if __name__ == "__main__":
