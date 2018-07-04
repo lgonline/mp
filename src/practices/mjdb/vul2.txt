@@ -1,0 +1,54 @@
+1    django_debug    Django debug模式开启
+8    sensitivePathScan    敏感路径扫描
+9    shellshock    shellshock
+11    heartbleed    心脏滴血
+16    tomcat_put_method    tomcat put文件上传
+17    common_expr_exec    通用表达式执行
+22    xssFlash    flash  xss
+24    spring_patch_rce    spring_patch远程命令执行
+28    crlf    crlf
+29    shiro_rce    shiro远程命令执行
+30    xmr_js_check    门罗币挖矿脚本嵌入
+31    openmeetings_detect    openmeeting对外
+32    cmdInjection    命令注入
+34    confluence    confluence检测
+35    ssh_weakpass    ssh弱口令
+36    ntp_detect    ntp反射放大漏洞
+37    wordpress_detect    wordpress版本探测
+38    proxyScan    代理检测
+39    jsMonitor    js监控
+40    log_detect    log页面对外
+42    sensitive_userinfo    页面泄露敏感信息如，pin，orderid，tel
+44    telnet_weakpass    telnet弱口令
+45    ssiInjection    ssi 注入
+46    ms17_010    ms17-010远程命令执行
+50    dz    排查资产中dz站点，如果dz曝漏洞第一时间找到dz
+51    authorization_401    401认证爆破
+54    weblogic_xml_rce    weblogic xml命令执行
+56    putMethod    put方法文件上传
+59    useSsoInPublic    外网使用sso
+60    directoryList    目录列举
+61    siteInfo    站点的title,headers
+62    useAuthErp    外网使用autherp
+63    iframeMonitor    监控iframe
+64    crossDomain    crossdomain.xml
+67    druidMonitor    druid
+68    actuatorNoAuth    trace
+69    authInfo    认证信息在url中或者回显中
+70    mysql_weakpass    mysql弱口令
+71    rsync    rsync 未授权访问
+72    shiro_rce_dnslog    shiro远程命令执行dnslog版
+73    nginx_overflow    nginx cve-20177529
+77    spring_data_rce    spring data 远程命令执行
+78    mongo_noauth    mongo未授权
+80    weblogic_wls_rce    WebLogic wls远程命令执行(CVE-2018-2628)
+81    params_exec_sql    参数中可执行sql语句
+82    ftpBruteForce    ftp爆破
+84    ms15034    ms15034
+87    memcachedUnauth    memcached未授权访问
+89    zookeeperUnauth    zookeeper未授权访问
+91    param_exec_sql_log    记录url参数执行sql语句的url
+93    agent_rce    agent_rce 临时poc
+94    sshPublicKeyLogin    使用泄露的公私钥认证
+95    JupyterHub_rce    JupyterHub rce 问题
+96    apacheTrafficServerStats    apache Traffic Server Stats 信息泄露

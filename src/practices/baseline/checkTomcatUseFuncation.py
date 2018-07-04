@@ -15,6 +15,7 @@
 import re,os
 import xmltodict
 import zipfile
+from xml.etree import ElementTree as ET
 
 TOMCAT_HOME = 'E:\\Developer\\apache-tomcat-7.0.73'
 tomcat_server_config = TOMCAT_HOME+'\\conf\\server.xml'
@@ -22,10 +23,10 @@ admin_console = TOMCAT_HOME+'\\webapps\\admin'
 manager_console = TOMCAT_HOME+'\\webapps\\manager'
 tomcat_user = TOMCAT_HOME+'\\conf\\tomcat-users.xml'
 web_config = TOMCAT_HOME+'\\conf\\web.xml'
-lib_config = TOMCAT_HOME+'\\conf\\catalina.jar'
-print(lib_config)
+lib_config = TOMCAT_HOME+'\\lib\\catalina.jar'
+# print(lib_config)
 
-def checkTelnetPort():
+def checkTelnetPort(tomcat_server_config):
     print('***********开始检查telnet到Tomcat服务器的默认端口************')
     with open(tomcat_server_config) as files:
         content = files.readlines()
@@ -43,17 +44,16 @@ def checkTelnetPort():
             else:
                 print('未发现tomcat不安全设置：telnet到Tomcat服务器启用默认口令')
 
-def checkAJPPort():
+def checkAJPPort(tomcat_server_config):
     print('***********开始检查tomcat和apache的ajp连接端口************')
     with open(tomcat_server_config) as files:
         content = files.readlines()
-        connector_conf = re.findall('<Connector port="(\d+)" protocol="(\S+) redirectPort="(\d+)"\/>', str(content))
-        # print(connector_conf)
+        connector_conf = re.findall('<Connector port="(\d+)" protocol="(\S+) redirectPort="(\d+)".*>', str(content))
+        print(connector_conf)
         for apjport in connector_conf:
             if apjport[0] == '8009':
                 print('发现tomcat不安全设置：ajp连接默认端口')
-                print(
-                '安全建议：如确有tomcat和apache的ajp连接的业务需求，应修改默认端口为20000以上的端口')
+                print('安全建议：如确有tomcat和apache的ajp连接的业务需求，应修改默认端口为20000以上的端口')
 
 def checkMgmtConfig():
     print('***********开始检查管理台的默认设置************')
@@ -76,7 +76,7 @@ def checkMgmtConfig():
         else:
             print('未发现对tomcat-users.xml 中所有<role><user>标签进行注释处理')
 
-def checkDefaultErrorPage():
+def checkDefaultErrorPage(web_config):
     print('***********开始检查tomcat错误页面的设置************')
     with open(web_config) as webconfigfile:
         config_content = webconfigfile.readlines()
@@ -97,22 +97,27 @@ def checkDefaultErrorPage():
             else:
                 print('未发现tomcat对500错误页面设置的不安全配置')
 
-def checkListFolder():
+def checkListFolder(web_config):
     print('***********开始检查tomcat列目录的的安全设置************')
 
     with open(web_config) as wb:
         docs = xmltodict.parse(wb.read())
-        servlet_content = docs['web-app']['servlet']
-
-        if '(\'param-name\', \'listings\'), (\'param-value\', \'false\')' in str(servlet_content):
-            print('发现tomcat不安全设置：列出Web目录下的文件')
-        else:
-            print('未发现tomcat不安全设置：列出Web目录下的文件')
+        servlet_contents = docs['web-app']['servlet']
+        # print(type(servlet_contents))
+        for content in servlet_contents:
+            # print(re.findall('\'(.*)\'',str(content)))
+            content = str(content).replace('[OrderedDict([(','')
+            print(content)
+        # if '(\'param-name\', \'listings\'), (\'param-value\', \'false\')' in str(servlet_contents):
+        #     print('发现tomcat不安全设置：列出Web目录下的文件')
+        # else:
+        #     print('未发现tomcat不安全设置：列出Web目录下的文件')
 
 def checkRunerAuthentication():
     print('***********开始检查tomcat的运行权限设置************')
+    pass
 
-def checkAutoDeploy():
+def checkAutoDeploy(tomcat_server_config):
     print('***********开始检查tomcat的war自动部署设置************')
     with open(tomcat_server_config) as wbconfig:
         config_content = wbconfig.readlines()
@@ -134,12 +139,44 @@ def checkOpenTomcatLog():
 
 def checkTomcatVersionInfo():
     print('***********开始检查tomcat隐藏版本信息的设置************')
-    with zipfile('E:\\Developer\\apache-tomcat-7.0.73\\lib\\catalina.jar') as wbconfig:
-        # with wbconfig.open('\\org\\apache\\catalina\\util\\ServerInfo.properties') as myfiles:
-        #     print(myfiles.read())
+    if os.path.isfile(lib_config):
+        print('1')
+        # zipf = zipfile.ZipFile(lib_config)
+        # zipf.extractall(os.getcwd())
+    else:
+        print('未发现tomcat不安全设置：已设置隐藏Tomcat的版本信息')
+    # 解压文件
+
+
+    with open('org\\apache\\catalina\\util\\ServerInfo.properties') as wbconfig:
+        config_content = wbconfig.readlines()
+        contents = re.findall(r'server.info=(.*)server.number=(.*)server.built=(.*).*',str(config_content).replace('\t','').replace('\n','').replace('\\n',''))
+        for content in contents:
+            if 'Tomcat' in content[0] or 'Apache Tomcat' in content[0]:
+                print('发现tomcat不安全设置：未隐藏Web容器版本信息')
+            else:
+                print('未发现tomcat不安全设置：已隐藏Web容器版本信息')
+
+            if content[1] is not None:
+                print('发现tomcat不安全设置：未隐藏Tomcat版本信息')
+            else:
+                print('未发现tomcat不安全设置：已隐藏Tomcat版本信息')
         pass
+
+def checkRewriteServerHeader():
+    pass
+
+
+def checkDNSSearch():
+    pass
+
 
 
 if __name__ == '__main__':
     print('***********开始检查tomcat安全配置************')
-    checkTomcatVersionInfo()
+    checkTelnetPort('jserver.xml')
+    checkAJPPort('jserver.xml')
+    checkDefaultErrorPage('jweb.xml')
+    checkListFolder('jweb.xml')
+    checkAutoDeploy('jserver.xml')
+    # print(os.getcwd())
