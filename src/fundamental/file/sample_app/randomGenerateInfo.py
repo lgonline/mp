@@ -11,24 +11,13 @@
 #   
 #   
 
-from urllib.request import urlopen
-import re,os
-from bs4 import BeautifulSoup
+import random
 
 def main():
-    target_page = urlopen('https://zhidao.baidu.com/question/202829791.html')
-    # print(type(target_page))
-    # print(target_page.info())
-    contents = target_page.read()
-    bs = BeautifulSoup(contents,'html.parser')
-    print(bs.prettify())
-    # contents = re.findall('',str(target_page.read())de)
-    # print(str(contents).encode('utf-8'))
-    #print(contents.decode('utf-8'))
+    capitals = {'河北':'石家庄','北京':'北京','上海':'上海','天津':'天津','重庆':'重庆','山东':'济南','山西':'太原'}
 
-    # contents = re.findall(r'',target_page.read())
-    pass
-
+    for queizNum in range(5):
+        pass
 
 if __name__ == '__main__':
     main()
