@@ -3,9 +3,9 @@
 __author__ = 'Administrator'
 
 #import MySQL drivers
-from mysql import connector
+import pymysql
 
-conn = connector.connect(user='root',password='lgonline',database='test')
+conn = pymysql.connect(user='root',password='toor',database='test')
 cursor = conn.cursor()
 
 #create table
