@@ -25,7 +25,7 @@ def checkPID(pid):
 
 if __name__ == '__main__':
     while True:
-        PID=input('Please input your pid. \n ')
+        PID = input('Please input your personal id. \n ')
         checkPID(PID)
         if PID == 'q':
             break
