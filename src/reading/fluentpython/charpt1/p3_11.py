@@ -39,10 +39,10 @@ if __name__ == '__main__':
     # beer_card = Card('7','diamonds')
     # print(beer_card)
 
-    deck = FrenchDeck()
+    # deck = FrenchDeck()
     # for j in deck:
     #     print(j)
-    print('FrenchDeck中有多少张牌：',len(deck))
+    # print('FrenchDeck中有多少张牌：',len(deck))
     #
     #取出第一张牌和最后一张牌
     # print(‘第一张牌：’deck[0])

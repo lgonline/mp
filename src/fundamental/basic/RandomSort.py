@@ -1,8 +1,8 @@
 __author__ = 'Administrator'
 import random
-i=0
+i = k = 0
 while True:
-    k==random.random()
+    k == random.random()
     ++i
     if i==20:
         break
