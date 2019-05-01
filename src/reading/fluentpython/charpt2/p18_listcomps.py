@@ -26,10 +26,10 @@ if __name__ == '__main__':
     # print(beyond_ascii)
 
     '''用生成器表达式初始化元祖和数组'''
-    symbols = '刘沛成'
-    for i in range(10):
-        for j in range(10):
-            print(symbols)
-    # print(tuple(ord(symbol) for symbol in symbols))
+    # symbols = '刘沛成'
+    # for i in range(10):
+    #     for j in range(10):
+    #         print(symbols)
+    print(tuple(ord(symbol) for symbol in symbols))
     pass
 

@@ -12,9 +12,16 @@ Card = collections.namedtuple('Card',['rank','suit'])
 #用于实现点数判断扑克牌的大小
 suit_values = dict(spades=3,hearts=2,diamonds=1,clubs=0)
 
-
 def spades_high(card):
     rank_value = FrenchDeck.ranks.index(card.rank)
+    print('-------------------------------------------')
+    print('rank_value is : ',rank_value)
+    print('suit_values is : ',suit_values)
+    print('len(suit_values) is : ',len(suit_values))
+    print('card.suit is : ',card.suit)
+    print('suit_values[card.suit] is : ',suit_values[card.suit])
+    print('rank_value * len(suit_values) + suit_values[card.suit] is ',rank_value * len(suit_values) + suit_values[card.suit])
+    print('-------------------------------------------')
     return rank_value * len(suit_values) + suit_values[card.suit]
 
 class FrenchDeck:
@@ -25,6 +32,7 @@ class FrenchDeck:
 
     def __init__(self):
         self.cards = [Card(rank,suit) for suit in self.suits for rank in self.ranks]
+        # print(self.cards)
 
     def __len__(self):
         return len(self.cards)
@@ -36,34 +44,37 @@ class FrenchDeck:
 
 
 if __name__ == '__main__':
-    # beer_card = Card('7','diamonds')
-    # print(beer_card)
+    # 得到一个纸牌的对象
+    beer_card = Card('7','diamonds')
+    print("The object beer_card is : ",beer_card)
 
-    # deck = FrenchDeck()
+    deck = FrenchDeck()
+    print('len(deck) is ',len(deck))
     # for j in deck:
     #     print(j)
     # print('FrenchDeck中有多少张牌：',len(deck))
-    #
-    #取出第一张牌和最后一张牌
-    # print(‘第一张牌：’deck[0])
-    # print(‘最后一张牌：’deck[-1])
+
+    # 取出第一张牌和最后一张牌
+    print('第一张牌：',deck[0])
+    print('最后一张牌：',deck[-1])
 
     # 随机抽取一张纸牌，使用random.choice
-    # print(choice(deck))
+    print('使用random.choice随机抽取一张纸牌 : ',choice(deck))
 
     # 取出最上面的三张牌
-    # print('最上面的三张牌：',deck[:3])
+    print('最上面的三张牌：',deck[:3])
     # 先抽出第12张牌，然后每隔13章牌拿一张
-    # print('先抽出第12张牌，然后每隔13章牌拿一张：',deck[12::13])
+    print('先抽出第12张牌，然后每隔13章牌拿一张：',deck[12::13])
 
     #仅仅实现了__getitem__,一摞牌九可以实现迭代和反迭代
-    # for card in deck:
-    #     print('一摞牌实现迭代',card)
+    for card in deck:
+        print('仅仅实现了__getitem__,一摞牌实现迭代',card)
     #
-    # for card in reversed(deck):
-    #     print('一摞牌实现反迭代',card)
+    for card in reversed(deck):
+        print('仅仅实现了__getitem__,一摞牌实现反迭代',card)
 
     #对扑克牌进行排序
+    print('--------------------扑克牌进行排序-----------------------------')
     for card in sorted(deck,key=spades_high):
         print(card)
 
