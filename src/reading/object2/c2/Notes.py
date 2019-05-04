@@ -25,10 +25,11 @@ class Note:
         return filter in self.memo or filter in self.tags
 
 #
-# if __name__ == '__main__':
-#     n1 = Notes("hello my notes",tags="python")
-#     print(n1.id)
-#     print(n1.creation_date)
-#     print(n1.memo)
-#     print(n1.tags)
-#     pass
+if __name__ == '__main__':
+    n1 = Note("hello my notes",tags="python")
+    print("n1.id is : ",n1.id)
+    print("n1.creation_date is : ",n1.creation_date)
+    print("n1.memo is : ",n1.memo)
+    print("n1.tags is : ",n1.tags)
+    print("n1.match('hello') is : ",n1.match("hello"))
+    pass
