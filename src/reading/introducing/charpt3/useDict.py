@@ -16,15 +16,30 @@ Description:
 """
 
 
-def main():
-    mydict = {'day':'Aperiod of twenty-four hours that never misses',
-              'positive':'Mistaken at the top of one\'s voice',
-              'misfortune':'The kind of fortune that never misses'}
+def handleDict():
+    mydict = {'day': 'Aperiod of twenty-four hours that never misses',
+              'positive': 'Mistaken at the top of one\'s voice',
+              'misfortune': 'The kind of fortune that never misses'}
     print(mydict)
-    lol = [['a','b'],['c','d'],['e','fo']]
-    print('使用dict转换为字典：',dict(lol))
+    lol = [['a', 'b'], ['c', 'd'], ['e', 'fo']]
+    print('使用dict转换为字典：', dict(lol))
     # print(mydict1)
     pass
+
+def addCompInDict():
+    mydict = {'a':1,'b':2}
+    print(mydict)
+    # 使用[key]添加或修改元素
+    mydict['c'] = 3
+    print(mydict)
+
+    mydict['m'] = 'a'
+    print(mydict)
+
+def main():
+    # handleDict()
+    addCompInDict()
+
 
 
 if __name__ == '__main__':
